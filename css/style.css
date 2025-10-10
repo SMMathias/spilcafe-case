@@ -1,0 +1,123 @@
+/* Root */
+:root {
+  font-family: "Inter", sans-serif;
+
+  /*Farver*/
+  --primary-color: #fff;
+  --secondary-color: #000;
+  --accent: #b2221d;
+
+  /* Fonts */
+  --fs-base: 1rem;
+  --fs-small: 0.875rem;
+  --fs-medium: 1.125rem;
+  --fs-large: 1.55rem;
+  --fs-huge: 2.5rem;
+  /* Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* Reset style*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  justify-self: start;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: url(../img/icon.png) center/contain no-repeat;
+}
+
+.header h2 {
+  justify-self: center;
+  font-family: "Inter", sans-serif;
+  font-size: var(--fs-large);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.menu {
+  justify-self: end;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: url(../img/menu.png) center/contain no-repeat;
+}
+
+.hero {
+  position: relative;
+  min-height: 80vh;
+  padding: 6rem 1.25rem 2rem;
+  color: var(--secondary-color);
+  text-align: center;
+  background: url(../img/hero.jpg) center/cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.hero article {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  margin: 0 0 0.75rem;
+  font-size: var(--fs-huge);
+  line-height: 1.05;
+  letter-spacing: 0.5px;
+  font-family: "inter";
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+.hero-locations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 2.5rem;
+}
+
+.hero-locations li + li {
+  margin-top: 0.5rem;
+}
+.hero-locations a {
+  display: inline-block;
+  padding: 0.6rem 0.9rem;
+  color: var(--secondary-color);
+  font-weight: var(--font-weight-bold);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  font-size: var(--fs-large);
+  transition: color 0.1s ease-in-out;
+}
+
+.hero-locations a:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+.hero-locations a:hover {
+  color: var(--accent);
+}
