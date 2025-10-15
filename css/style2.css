@@ -777,6 +777,11 @@ dialog#game-dialog::backdrop {
   z-index: 2000;
 }
 
+.rating-stars label {
+  font-size: 18px;
+  color: #000;
+}
+
 #filter-overlay.hidden {
   display: none;
 }
