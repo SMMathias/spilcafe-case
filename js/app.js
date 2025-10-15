@@ -245,3 +245,16 @@ resetFilterBtn.addEventListener("click", () => {
     )
     .forEach((input) => (input.checked = false));
 });
+
+//MENU OVERLAY
+const menuOverlay = document.querySelector("#menu-overlay");
+const openMenuBtn = document.querySelector("#menu-btn");
+const closeMenuBtn = document.querySelector("#close-menu");
+
+openMenuBtn.addEventListener("click", () => {
+  menuOverlay.classList.remove("hidden");
+});
+
+closeMenuBtn.addEventListener("click", () => {
+  menuOverlay.classList.add("hidden");
+});

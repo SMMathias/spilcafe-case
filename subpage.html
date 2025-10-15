@@ -17,7 +17,7 @@
       <!-- Skal være logo -->
       <a href="#" class="logo" aria-label="homepage"></a>
       <input id="search-input" type="search" placeholder="Søg spil..." />
-      <button class="menu-btn">☰</button>
+      <button id="menu-btn">☰</button>
     </header>
 
     <main>
@@ -83,6 +83,22 @@
             <button id="reset-filter">Ryd filtre</button>
             <button id="close-filter">Gem og luk</button>
           </div>
+        </div>
+      </div>
+
+      <!--overlay menu-->
+      <div id="menu-overlay" class="hidden">
+        <div class="menu-box">
+          <h2>MENU</h2>
+          <button id="close-menu" aria-label="luk menu">✖️</button>
+          <nav>
+            <ul>
+              <li><a href="#">Resevér bord</a></li>
+              <li><a href="#">Membership</a></li>
+              <li><a href="#">Spilguide</a></li>
+              <li><a href="#">Spiloversigt</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
 
