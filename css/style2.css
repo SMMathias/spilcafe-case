@@ -54,6 +54,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 10;
+  margin-bottom: -4rem;
 }
 
 .logo {
@@ -90,6 +91,19 @@
 .menu-btn:hover {
   background: var(--accent);
   color: #fff;
+}
+
+.filtre-btn {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .category-bar {
