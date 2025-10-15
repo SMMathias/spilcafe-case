@@ -92,9 +92,8 @@
   background: var(--accent);
   color: #fff;
 }
-
+/* Filter-knap */
 #filtre-btn {
-  justify-self: end;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,34 +103,54 @@
   border: none;
   font-size: 2rem;
   cursor: pointer;
+  flex-shrink: 0; /* Knappen krymper ikke */
+  margin-top: 30px;
 }
 
-.category-bar {
+#filtre-btn:hover {
+  color: var(--accent);
+}
+
+/* Container for filter-knap + kategori-knapper */
+.filter-category-container {
   display: flex;
-  gap: 0.7rem;
+  align-items: center; /* Vertikal centering */
+  justify-content: space-between; /* Filter venstre, kategorier højre */
+  gap: 1rem;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0.5rem 2rem 0.7rem 2rem;
-  overflow-x: auto;
+  padding: 0.5rem 2rem;
+  flex-wrap: nowrap; /* Hold alt på én linje */
+  overflow-x: auto; /* Scroll hvis for mange kategorier */
   background: #fff;
 }
 
+/* Knapper i kategori-bar */
+.category-bar {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: nowrap; /* Alle på samme linje */
+  overflow-x: auto; /* Scroll på små skærme */
+  -webkit-overflow-scrolling: touch; /* Glidende scroll på iOS */
+}
+
+/* Kategori-knapper */
 .category {
   border: 1.5px solid var(--accent);
-  background: var(--card-bg);
-  color: var(--secondary-color);
-  border-radius: 12px;
+  background: var(--bg-card, #fff);
+  color: var(--secondary-color, #000);
+  border-radius: 8px;
   padding: 0.5rem 1.2rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
+  white-space: nowrap; /* Forhindrer tekst-wrap */
 }
 
 .category:hover {
-  background: var(--accent);
+  background: var(--accent, #b2221d);
   color: #fff;
 }
-
 /* =====================
    GLOBAL STYLES
    ===================== */
@@ -745,7 +764,9 @@ dialog#game-dialog::backdrop {
   background: var(--bg-card);
 }
 
-/* FILTER OVERLAY */
+/* =====================
+   FILTER OVERLAY
+   ===================== */
 #filter-overlay {
   position: fixed;
   inset: 0;
@@ -827,4 +848,39 @@ dialog#game-dialog::backdrop {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* =====================
+   MENU OVERLAY
+   ===================== */
+
+#menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#menu-overlay.hidden {
+  display: none;
+}
+
+.menu-box {
+  background: #fff;
+  padding: 2rem;
+  width: 350px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  font-family: "Inter", sans-serif;
+}
+
+.menu-box h2 {
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 1rem;
 }

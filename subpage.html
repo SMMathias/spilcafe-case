@@ -19,25 +19,25 @@
       <input id="search-input" type="search" placeholder="Søg spil..." />
       <button id="menu-btn">☰</button>
     </header>
-
+    <!-- Main content -->
     <main>
-      <!-- ÉN Filter-knap -->
-      <section class="filterbar">
-        <button id="filtre-btn">
-          <img id="filter-icon" src="img/filter-icon.png" alt="filter ikon" />
-        </button>
-      </section>
+      <div class="filter-category-container">
+        <section class="filterbar">
+          <button id="filtre-btn">
+            <img id="filter-icon" src="img/filter-icon.png" alt="filter ikon" />
+          </button>
+        </section>
 
-      <div class="category-bar">
-        <button class="category">Familie</button>
-        <button class="category">God til 2</button>
-        <button class="category">Ræs</button>
-        <button class="category">For børn</button>
-        <button class="category">Gætteleg</button>
-        <button class="category">Venindehygge</button>
-        <button class="category">15 min</button>
+        <div class="category-bar">
+          <button class="category">Familie</button>
+          <button class="category">God til 2</button>
+          <button class="category">Ræs</button>
+          <button class="category">For børn</button>
+          <button class="category">Gætteleg</button>
+          <button class="category">Venindehygge</button>
+          <button class="category">15 min</button>
+        </div>
       </div>
-
       <!-- FILTER OVERLAY -->
       <div id="filter-overlay" class="hidden">
         <div class="filter-box">
@@ -89,8 +89,10 @@
       <!--overlay menu-->
       <div id="menu-overlay" class="hidden">
         <div class="menu-box">
-          <h2>MENU</h2>
-          <button id="close-menu" aria-label="luk menu">✖️</button>
+          <div id="menu-top">
+            <h2>MENU</h2>
+            <button id="close-menu" aria-label="luk menu">✖️</button>
+          </div>
           <nav>
             <ul>
               <li><a href="#">Resevér bord</a></li>
