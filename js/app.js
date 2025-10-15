@@ -141,7 +141,7 @@ function filteredGames() {
   // 1 Søgning
   if (searchValue) {
     filtered = filtered.filter((game) =>
-      game.title.toLowerCase().includes(searchValue)
+      game.title.toLowerCase().startsWith(searchValue)
     );
   }
 
