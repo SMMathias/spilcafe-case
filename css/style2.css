@@ -730,3 +730,87 @@ dialog#game-dialog::backdrop {
 #clear-filters:hover {
   background: var(--bg-card);
 }
+
+/* FILTER OVERLAY */
+#filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#filter-overlay.hidden {
+  display: none;
+}
+
+.filter-box {
+  background: #fff;
+  padding: 2rem;
+  width: 350px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  font-family: "Inter", sans-serif;
+}
+
+.filter-box h2 {
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.filter-box h3 {
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.genre-options,
+.difficulty-options,
+.language-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+#reset-filter {
+  border: 1px solid black;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#close-filter {
+  background: #a12c2c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.rating-stars {
+  font-size: 1.5rem;
+  color: #a12c2c;
+}
+
+#open-filter {
+  margin: 1rem;
+  background: #a12c2c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -237,3 +237,25 @@ function showGameModal(game) {
   // Åbn modalen
   document.querySelector("#game-dialog").showModal();
 }
+
+// FILTER OVERLAY LOGIK
+const filterOverlay = document.querySelector("#filter-overlay");
+const openFilterBtn = document.querySelector("#open-filter");
+const closeFilterBtn = document.querySelector("#close-filter");
+const resetFilterBtn = document.querySelector("#reset-filter");
+
+openFilterBtn.addEventListener("click", () => {
+  filterOverlay.classList.remove("hidden");
+});
+
+closeFilterBtn.addEventListener("click", () => {
+  filterOverlay.classList.add("hidden");
+});
+
+resetFilterBtn.addEventListener("click", () => {
+  document
+    .querySelectorAll(
+      "#filter-overlay input[type=checkbox], #filter-overlay input[type=radio]"
+    )
+    .forEach((input) => (input.checked = false));
+});
