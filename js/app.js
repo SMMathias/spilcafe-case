@@ -7,18 +7,27 @@ let allGames = []; // Global array to hold all games
 function initApp() {
   console.log("initApp: app.js is running 🎉");
   getGames();
-  document
-    .querySelector(".difficulty-options")
-    .addEventListener("input", filteredGames);
-  document
-    .querySelector(".genre-options")
-    .addEventListener("change", filteredGames);
-  document
-    .querySelector(".language-options")
-    .addEventListener("change", filteredGames);
 
+  // listners to filtre and search
+  document
+    .querySelectorAll(".genre-options input")
+    .forEach((el) => el.addEventListener("change", filteredGames));
+  document
+    .querySelectorAll(".difficulty-options input")
+    .forEach((el) => el.addEventListener("change", filteredGames));
+  document
+    .querySelectorAll(".language-options input")
+    .forEach((el) => el.addEventListener("change", filteredGames));
+
+  document
+    .querySelector("#search-input")
+    .addEventListener("input", filteredGames);
   document.querySelector("#close-dialog").addEventListener("click", () => {
     document.querySelector("#game-dialog").close();
+
+    document
+      .querySelector("#players-range")
+      .addEventListener("input", filteredGames);
   });
 }
 
@@ -28,7 +37,6 @@ async function getGames() {
     "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json"
   );
   allGames = await response.json();
-  populateGenreDropdown(); // Udfyld dropdown med genres
   displayGames(allGames);
 }
 
@@ -111,54 +119,60 @@ function filteredGames() {
   const searchValue = document
     .querySelector("#search-input")
     .value.toLowerCase();
-  const genreValue = document.querySelector("#genre-select").value;
-  const sortValue = document.querySelector("#sort-select").value;
 
-  // NYE rating variable - TILFØJ EFTER år variablerne
-  const ratingFrom = Number(document.querySelector("#rating-from").value) || 0;
-  const ratingTo = Number(document.querySelector("#rating-to").value) || 10;
+  // --- Genre (checkboxes) ---
+  const checkedGenres = Array.from(
+    document.querySelectorAll(".genre-options input:checked")
+  ).map((input) => input.parentElement.textContent.trim());
 
-  console.log("Rating filter:", ratingFrom, "til", ratingTo);
+  // --- Difficulty (radio) ---
+  const selectedDifficulty = document
+    .querySelector(".difficulty-options input:checked")
+    ?.parentElement.textContent.trim();
 
-  // Start med alle games
-  let filteredGames = allGames;
+  // --- Language (radio) ---
+  const selectedLanguage = document
+    .querySelector(".language-options input:checked")
+    ?.parentElement.textContent.trim();
 
-  // TRIN 1: Filtrer på søgetekst
+  // Start med alle spil
+  let filtered = allGames;
+
+  // 1 Søgning
   if (searchValue) {
-    filteredGames = filteredGames.filter((game) => {
-      return game.title.toLowerCase().includes(searchValue);
+    filtered = filtered.filter((game) =>
+      game.title.toLowerCase().includes(searchValue)
+    );
+  }
+
+  // 2 Genre
+  if (checkedGenres.length > 0) {
+    filtered = filtered.filter((game) =>
+      checkedGenres.some((genre) => game.genre.includes(genre))
+    );
+  }
+
+  // 3 Sværhedsgrad
+  if (selectedDifficulty) {
+    filtered = filtered.filter(
+      (game) => game.difficulty === selectedDifficulty
+    );
+  }
+
+  // 4 Sprog
+  if (selectedLanguage) {
+    filtered = filtered.filter((game) => game.language === selectedLanguage);
+  }
+
+  // 5 Antal personer
+  const playerCount = Number(document.querySelector("#players-range").value);
+  if (playerCount) {
+    filtered = filtered.filter((game) => {
+      return playerCount >= game.players.min && playerCount <= game.players.max;
     });
   }
 
-  // TRIN 2: Filtrer på genre
-  if (genreValue !== "all") {
-    filteredGames = filteredGames.filter((game) => {
-      return game.genre.includes(genreValue);
-    });
-  }
-
-  // Rating range filter - TILFØJ EFTER år filter
-  if (ratingFrom > 0 || ratingTo < 10) {
-    console.log("Anvender rating filter:", ratingFrom, "-", ratingTo);
-    const before = filteredGames.length;
-
-    filteredGames = filteredGames.filter((game) => {
-      return game.rating >= ratingFrom && game.rating <= ratingTo;
-    });
-
-    console.log("Rating filter:", before, "→", filteredGames.length, "Spil");
-  } else {
-    console.log("Ingen rating filter (alle ratings)");
-  }
-
-  // TRIN 3: Sorter resultater
-  if (sortValue === "title") {
-    filteredGames.sort((a, b) => a.title.localeCompare(b.title));
-  } else if (sortValue === "rating") {
-    filteredGames.sort((a, b) => b.rating - a.rating); // Højeste først
-  }
-
-  displayGames(filteredGames);
+  displayGames(filtered);
 }
 
 // Ny funktion: Ryd alle filtre - TILFØJ DENNE
@@ -176,18 +190,6 @@ function clearAllFilters() {
 
   // Kør filtrering igen (viser alle film)
   filteredGames();
-}
-
-// #6: Udfyld genre-dropdown med alle unikke genrer
-function populateGenreDropdown() {
-  const genreSelect = document.querySelector("#genre-select");
-  const genres = new Set();
-
-  for (const game of allGames) {
-    for (const genre of game.genre) {
-      genres.add(genre);
-    }
-  }
 }
 
 // #8: Vis game i modal dialog
@@ -222,7 +224,7 @@ function showGameModal(game) {
   document.querySelector("#game-dialog").showModal();
 }
 
-// FILTER OVERLAY LOGIK
+// FILTER OVERLAY
 const filterOverlay = document.querySelector("#filter-overlay");
 const openFilterBtn = document.querySelector("#filtre-btn");
 const closeFilterBtn = document.querySelector("#close-filter");
