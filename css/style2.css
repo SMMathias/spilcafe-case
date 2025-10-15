@@ -884,3 +884,30 @@ dialog#game-dialog::backdrop {
   font-weight: 800;
   margin-bottom: 1rem;
 }
+
+.menu-links {
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-decoration: none important;
+  text-decoration-line: none;
+}
+
+.menu-links:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+#menu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#close-menu {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--secondary-color);
+}
