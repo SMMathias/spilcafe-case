@@ -500,7 +500,7 @@ dialog#game-dialog::backdrop {
   width: 100%;
   height: auto;
   max-height: 500px;
-  object-fit: cover;
+  object-fit: fit;
   border-radius: var(--radius);
 }
 
@@ -888,7 +888,7 @@ dialog#game-dialog::backdrop {
 .menu-links {
   font-weight: bold;
   color: var(--secondary-color);
-  text-decoration: none important;
+  text-decoration: none;
   text-decoration-line: none;
 }
 

@@ -244,6 +244,35 @@ resetFilterBtn.addEventListener("click", () => {
       "#filter-overlay input[type=checkbox], #filter-overlay input[type=radio]"
     )
     .forEach((input) => (input.checked = false));
+
+  if (resetFilterBtn) {
+    resetFilterBtn.addEventListener("click", () => {
+      // Uncheck all checkboxes and radios
+      document
+        .querySelectorAll(
+          "#filter-overlay input[type=checkbox], #filter-overlay input[type=radio]"
+        )
+        .forEach((input) => (input.checked = false));
+
+      // Reset all range inputs to their default values
+      document
+        .querySelectorAll("#filter-overlay input[type=range]")
+        .forEach((input) => (input.value = input.defaultValue));
+
+      // Reset search input if you have one
+      const searchInput = document.querySelector("#search-input");
+      if (searchInput) searchInput.value = "";
+
+      // Reset genre and sort selects if you have them
+      const genreSelect = document.querySelector("#genre-select");
+      if (genreSelect) genreSelect.value = "all";
+      const sortSelect = document.querySelector("#sort-select");
+      if (sortSelect) sortSelect.value = "none";
+
+      // Now re-render all games (show all)
+      filteredGames();
+    });
+  }
 });
 
 //MENU OVERLAY
