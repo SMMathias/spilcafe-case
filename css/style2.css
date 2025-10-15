@@ -93,7 +93,7 @@
   color: #fff;
 }
 
-.filtre-btn {
+#filtre-btn {
   justify-self: end;
   display: flex;
   align-items: center;

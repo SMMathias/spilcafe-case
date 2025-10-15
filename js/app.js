@@ -240,7 +240,7 @@ function showGameModal(game) {
 
 // FILTER OVERLAY LOGIK
 const filterOverlay = document.querySelector("#filter-overlay");
-const openFilterBtn = document.querySelector("#open-filter");
+const openFilterBtn = document.querySelector("#filtre-btn");
 const closeFilterBtn = document.querySelector("#close-filter");
 const resetFilterBtn = document.querySelector("#reset-filter");
 
