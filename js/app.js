@@ -8,23 +8,18 @@ function initApp() {
   console.log("initApp: app.js is running 🎉");
   getGames();
   document
-    .querySelector("#search-input")
+    .querySelector(".difficulty-options")
     .addEventListener("input", filteredGames);
   document
-    .querySelector("#genre-select")
+    .querySelector(".genre-options")
     .addEventListener("change", filteredGames);
   document
-    .querySelector("#sort-select")
+    .querySelector(".language-options")
     .addEventListener("change", filteredGames);
 
   document.querySelector("#close-dialog").addEventListener("click", () => {
     document.querySelector("#game-dialog").close();
   });
-
-  // Clear filters knap - TILFØJ TIL SIDST
-  document
-    .querySelector("#clear-filters")
-    .addEventListener("click", clearAllFilters);
 }
 
 // #2: Fetch games from JSON and display them
@@ -192,17 +187,6 @@ function populateGenreDropdown() {
     for (const genre of game.genre) {
       genres.add(genre);
     }
-  }
-
-  // Fjern gamle options undtagen 'Alle genrer'
-  genreSelect.innerHTML = '<option value="all">Alle genrer</option>';
-
-  const sortedGenres = Array.from(genres).sort();
-  for (const genre of sortedGenres) {
-    genreSelect.insertAdjacentHTML(
-      "beforeend",
-      `<option value="${genre}">${genre}</option>`
-    );
   }
 }
 
