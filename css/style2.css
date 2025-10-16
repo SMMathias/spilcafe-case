@@ -723,7 +723,6 @@ dialog#game-dialog::backdrop {
   color: #666;
 }
 
-/* Tilføj til din app.css */
 .game-card {
   cursor: pointer;
   transition: transform 0.2s ease;
